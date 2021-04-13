@@ -72,11 +72,11 @@ int main(int argc, char **argv) {
 
 	fgets(buf, sizeof(buf), fin);
 
+	fprintf(stderr, "%s\n", buf);
 	while (fgets(buf, sizeof(buf), fin) != NULL) {
 		if (argc == 1 || strindex(buf, argv[1]) >= 0) {
+			fprintf(stderr, "%s\n", buf);
 			ipt_create(&ipt, buf);
-			ipt_print_json(&ipt);
-
 			fprintf(stderr, "Kill pid: %d (y/N)? ", ipt.pid);
 
 			if (ttyn() == 'y') {

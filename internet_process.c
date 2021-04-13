@@ -1,4 +1,5 @@
 #include "internet_process.h"
+#include <stdio.h>
 // COMMAND  PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 char *example = "python3 4338 jwmbe    3u  IPv4  66018      0t0  TCP *:8000 (LISTEN)\n";
 
@@ -87,6 +88,15 @@ void ipt_destroy(internet_process_t *ipt) {
 	if (ipt->size_off) free(ipt->size_off);
 	ipt->pid = -1;
 	ipt->node = -1;
+}
+
+void ipt_print_headers() {
+	fprintf(stderr, "CMD  PID  USER  DEVICE  SIZE/OFF  NODE  NAME\n");
+}
+
+void ipt_print_std(internet_process_t *ipt) {
+	fprintf(stderr, "%s  %d  %s  %s  %s  %d  %s\n",
+			ipt->cmd, ipt->pid, ipt->usr, ipt->device, ipt->size_off, ipt->node, ipt->name);
 }
 
 void ipt_print_json(internet_process_t *ipt) {

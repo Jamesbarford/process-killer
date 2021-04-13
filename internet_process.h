@@ -20,6 +20,8 @@ typedef struct internet_process_t {
 
 void ipt_create(internet_process_t *ipt, char *src);
 void ipt_destroy(internet_process_t *ipt);
+void ipt_print_headers();
+void ipt_print_std(internet_process_t *ipt);
 void ipt_print_json(internet_process_t *ipt);
 
 #endif
